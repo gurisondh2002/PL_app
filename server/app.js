@@ -3,6 +3,8 @@ const app = express();
 const port = 3000
 const sequelize = require('./utils/db')
 
+const prod_service = require('./models/prod_service')
+
 
 sequelize
     .sync()
