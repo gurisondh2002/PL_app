@@ -20,13 +20,17 @@ const Prod_Services = sequelize.define("products_services",{
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
     },
-    Type: {
+    type: {
         type: DataTypes.TINYINT.UNSIGNED,
         allowNull: false,
     },
     is_active: {
         type: DataTypes.BOOLEAN,
         allowNull: false
+    },
+    imageUrl :{
+        type:DataTypes.STRING,
+        allowNull:false
     },
     createdAt:{
         type: DataTypes.DATE,
