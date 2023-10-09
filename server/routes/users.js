@@ -9,4 +9,8 @@ router.post('/register', UserController.registerController)
 
 router.post('/login',  UserController.loginController)
 
+router.get("/cart", UserController.getUserCart)
+
+router.post('/cart/update',UserController.editCart)
+
 module.exports = router;
