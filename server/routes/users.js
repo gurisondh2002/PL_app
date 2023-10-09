@@ -13,4 +13,6 @@ router.get("/cart", UserController.getUserCart)
 
 router.post('/cart/update',UserController.editCart)
 
+router.post('/cart/delete',UserController.deleteProduct)
+
 module.exports = router;

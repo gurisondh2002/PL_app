@@ -113,4 +113,25 @@ const editCart = async (req, res, next) => {
         })
 }
 
-module.exports = {registerController, loginController , getUserCart, editCart }
+const deleteProduct = async(req,res,next) => {
+    req.user
+    .getCart()
+    .then((cart)=>{
+        return cart.getProducts_services({where : {id : req.body.pid}})
+    })
+    .then((products)=>{
+        let product;
+        if(products.length > 0){
+            product = products[0]
+            return product
+        }
+    })
+    .then(product => {
+        product.cartItems.destroy()
+    })
+    .then(()=>{
+        res.json("Product Deleted")
+    })
+}
+
+module.exports = {registerController, loginController , getUserCart, editCart, deleteProduct}
