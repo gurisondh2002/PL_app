@@ -8,6 +8,7 @@ app.use(express.json());
 const Prod_Services = require('./models/prod_service')
 const Users = require('./models/user')
 const Cart = require('./models/cart')
+const CartItems = require('./models/cartItems')
 
 const ProdServiceRouter = require('./routes/prod_services');
 app.use('/productsServices',ProdServiceRouter);
