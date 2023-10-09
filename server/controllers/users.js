@@ -27,4 +27,28 @@ const registerController = async(req,res) =>{
     })
 }
 
-module.exports = {registerController}
+const loginController = async(req,res)=>{
+    const {email, password} = req.body;
+    let user;
+    return user = await Users.findOne({
+        where :{
+            email : email
+        }
+    }).then((user)=>{
+        if(!user){
+            res.json({"message":"User not registered"});
+        }
+        else{
+            bcrypt.compare(password, user.password).then((match)=>{
+                if(!match){
+                    res.json({"message":"Wrong credentials"});
+                }
+                else{
+                    res.json("Logged in successfully");
+                }
+            })
+        }
+    })
+}
+
+module.exports = {registerController, loginController}
