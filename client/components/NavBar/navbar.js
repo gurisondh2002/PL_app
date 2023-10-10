@@ -31,7 +31,7 @@ function Navigationbar() {
           <Nav.Link href="/cart">
             <FaShoppingCart  style={{height:"25px", width:"25px"}}/>
           </Nav.Link>
-          <Nav.Link href="/registration">
+          <Nav.Link href="/user">
             <BiSolidUser style={{height:"25px", width:"25px"}}/>
           </Nav.Link>
           </Nav>
