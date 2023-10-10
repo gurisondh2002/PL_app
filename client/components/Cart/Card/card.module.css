@@ -7,7 +7,7 @@
     margin: 7px;
     background: white;
     border: 1px solid #E1E1E1;
-    border-radius: 23px;
+    border-radius: 15px;
     opacity: 1;
     max-width: 250px;
     min-height: 200px;
@@ -18,10 +18,12 @@
 .cardImage{
     height: auto;
     max-width: 100%;
+    border-radius: 15px;
 }
 .img{
     height: auto;
     max-width: 100%;
+    border-radius: 15px;
 }
 .text{
     display: flex;
