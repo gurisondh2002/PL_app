@@ -29,9 +29,6 @@
     align-items: center;
     justify-content: center;
     background-color: rgb(255,245,238);
-    /* @media screen and (max-width: 570px) {
-        width: 100%;
-    } */
 }
 .text{
     display: flex;
@@ -41,12 +38,12 @@
     width: 100%;
     height:auto;
 }
-.leftContainer h1{
+.aboutHeading h1{
     align-items: center;
     text-align: center;
     margin-top: 20%;
 }
-.leftContainer p{
+.aboutContent p{
     margin-top: 10px;
     margin: 10px;
     text-align: center;
@@ -61,6 +58,7 @@
 .aboutButton button{
     padding: 10px;
     border-radius: 5px;
+    border-color:grey;
     background-color: rgb(255,245,238);
     outline: black;
 }
