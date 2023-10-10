@@ -1,11 +1,23 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import { Herr_Von_Muellerhoff } from 'next/font/google'
-import PageBanner from '../components/Home/PageBanner/pagebanner'
-import Services from '../components/Home/Services/services'
-import ProdsAndSers from '@/components/Home/ProdsAndSers/prodsandsers'
-import Trending from '@/components/Home/Trending/trending'
-import Footer from '@/components/Footer/footer'
+import dynamic from 'next/dynamic'
+const PageBanner = dynamic(
+    ()=>import('@/components/Home/PageBanner/pagebanner'),
+    {suspense:true}
+)
+const Services = dynamic(
+  ()=>import('@/components/Home/Services/services'),
+  {suspense:true}
+)
+const ProdsAndSers = dynamic(
+  ()=>import('@/components/Home/ProdsAndSers/prodsandsers'),
+  {suspense:true}
+)
+const Trending = dynamic(
+  ()=>import('@/components/Home/Trending/trending'),
+  {suspense:true}
+)
 
 export default function Home() {
   return (
@@ -14,7 +26,6 @@ export default function Home() {
       <Services />
       <ProdsAndSers/>
       <Trending/>
-      <Footer/>
     </div>
   )
 }

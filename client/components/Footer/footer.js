@@ -5,6 +5,7 @@ import {TiSocialLinkedinCircular} from 'react-icons/ti'
 
 function Footer() {
   return (
+    <>
     <div className={`${styles.footerContainer}`}>
         <div className={`${styles.text}`}>
         <h3>Style My Home</h3>
@@ -29,6 +30,7 @@ function Footer() {
             <p> &copy; 2023 StyleMyHome. All Rights Reverved</p>
         </div>
     </div>
+    </>
   )
 }
 
