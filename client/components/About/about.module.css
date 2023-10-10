@@ -1,0 +1,48 @@
+.rightContainer{
+    width: 50%;
+    min-height:720px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float:right;
+}
+.leftContainer{
+    width: 50%;
+    min-height:720px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255,245,238);
+}
+.leftContainer h1{
+    align-items: center;
+    text-align: center;
+    margin-top: 20%;
+}
+.leftContainer p{
+    margin-top: 10px;
+    margin: 10px;
+    text-align: center;
+    word-spacing: 1px;
+}
+.aboutButton{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.aboutButton button{
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+    outline: black;
+}
+.aboutButton button:hover{
+    background-color: black;
+    color: white;
+}
