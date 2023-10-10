@@ -1,10 +1,9 @@
 import React from 'react'
-import NavBar from '../../components/Home/NavBar/navbar'
 
 function page() {
   return (
     <div>
-        <NavBar/>
+      hello world =. I am chitti. speed 1 terrahertz memory 1 cettebyte.
     </div>
   )
 }
