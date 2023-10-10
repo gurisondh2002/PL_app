@@ -25,6 +25,8 @@ const ProdServiceRouter = require('./routes/prod_services');
 app.use('/productsServices',ProdServiceRouter);
 
 const UserRouter = require('./routes/users');
+const Order = require("./models/order");
+const OrderItems = require("./models/orderItems");
 app.use('/user',UserRouter);
 
 Prod_Services.belongsTo(Users, { constraints: true, onDelete: 'CASCADE' });
@@ -33,6 +35,10 @@ Users.hasOne(Cart);
 Cart.belongsTo(Users , { constraints: true, onDelete: 'CASCADE' });
 Cart.belongsToMany(Prod_Services, { through: CartItems });
 Prod_Services.belongsToMany(Cart, { through: CartItems });
+Users.hasMany(Order);
+Order.belongsTo(Users);
+Order.belongsToMany(Prod_Services, {through : OrderItems})
+
     
     sequelize
         .sync()

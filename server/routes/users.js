@@ -15,4 +15,8 @@ router.post('/cart/update',UserController.editCart)
 
 router.post('/cart/delete',UserController.deleteProduct)
 
+router.post('/order/create',UserController.createOrder)
+
+router.get('/order',UserController.getOrder)
+
 module.exports = router;

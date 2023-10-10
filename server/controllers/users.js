@@ -134,4 +134,37 @@ const deleteProduct = async(req,res,next) => {
     })
 }
 
-module.exports = {registerController, loginController , getUserCart, editCart, deleteProduct}
+const createOrder = async(req , res , next) => {
+    req.user
+    .getCart()
+    .then(cart => {
+        return cart.getProducts_services()
+    })
+    .then(products => {
+        req.user
+        .createOrder()
+        .then(order => {
+            order.addProducts_services(products.map(product => {
+                product.orderItem = { quantity : product.cartItems.quantity}
+                return product
+            }))
+        })
+        .then(()=>{
+            res.json("Order created!!")
+        })
+    })
+}
+
+const getOrder = async(req, res,next)=>{
+    req.user
+    .getOrders()
+    .then((orders)=>{
+        const order = orders[0];
+        return order;
+    })
+    .then(order => {
+        res.json(order.getProducts_services())
+    })
+}
+
+module.exports = {registerController, loginController , getUserCart, editCart, deleteProduct, createOrder, getOrder}
