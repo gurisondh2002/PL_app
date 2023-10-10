@@ -1,3 +1,9 @@
+.mainConteiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 .aboutContainer{
     display: flex;
     width: 100%;
@@ -14,9 +20,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* @media screen and (max-width: 570px) {
-        display: none;
-    } */
 }
 .leftContainer{
     width: 50%;
@@ -29,6 +32,14 @@
     /* @media screen and (max-width: 570px) {
         width: 100%;
     } */
+}
+.text{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height:auto;
 }
 .leftContainer h1{
     align-items: center;
