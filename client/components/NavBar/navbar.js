@@ -9,7 +9,7 @@ import styles from './navbar.module.css'
 
 function Navigationbar() {
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary" style={{background: "transparent"}}>
+    <Navbar fixed="top" collapseOnSelect expand="lg" className={`${styles.navbarContainer} bg-body-tertiary`}>
       <Container>
         <Navbar.Brand href="/" className={`${styles.logo} `}>Style My Home</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

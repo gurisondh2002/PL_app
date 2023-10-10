@@ -2,3 +2,7 @@
     margin-right: 50px !important;
     margin-left: 0 !important;
 }
+
+.navBarContainer{
+    z-index: 1000;
+}
