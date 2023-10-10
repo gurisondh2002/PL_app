@@ -1,0 +1,30 @@
+.name{
+    text-align: center;
+    margin: 20px;   
+}
+.containerListing ul li{
+    width: 30%;
+    min-height:100px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.containerButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.containerButton button{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    outline: black;
+}
+.containerButton button:hover{
+    background-color: black;
+    color: white;
+}
