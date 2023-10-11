@@ -27,6 +27,7 @@ const getProductById = async(req,res,next)=>{
 
 const createProduct =  async(req,res)=>{
     const product = req.body;
+    product.is_active = 1;
     const result = await Prod_Services.create(product);
     res.json(result);
 }

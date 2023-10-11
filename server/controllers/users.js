@@ -2,18 +2,19 @@ const Users = require('../models/user');
 const bcrypt = require("bcrypt");
 const Cart = require('../models/cart')
 const Prod_Services = require('../models/prod_service')
+const isAdmin =  require('../Middleware/isAdmin')
 
 const registerController = async(req,res) =>{
     const {first_name, last_name ,email, password} = req.body;
-    const user = Users.findOne({
+    await Users.findOne({
         where: {
             email: email,
         }
-    }).then(()=>{
+    }).then((user)=>{
         if(user){
             res.json({"message": "User Already Exists"})
         }else{
-            bcrypt.hash(password, 10).then((hash)=>{
+            bcrypt.hash(password,10).then((hash)=>{
                 Users.create({
                     first_name : first_name,
                     last_name : last_name,
@@ -21,8 +22,13 @@ const registerController = async(req,res) =>{
                     password:hash,
                     role:2,
                     is_active: true
-                }).then(()=>{
-                    res.json("SUCCESSFULLY REGISTERED")
+                }).then(async(user)=>{
+                    const admin = await isAdmin(user)
+                    res.json({
+                        message:"User Successfully Registered",
+                        email: user.email,
+                        isAdmin : admin
+                    })
                 })
             })
         }
