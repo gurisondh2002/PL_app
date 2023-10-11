@@ -163,8 +163,82 @@ const getOrder = async(req, res,next)=>{
         return order;
     })
     .then(order => {
-        res.json(order.getProducts_services())
+        if(order){
+           return order.getProducts_services()
+        }
+        else{
+            res.json("No Order Placed Yet!!")
+        }
+    })
+    .then(prods => {
+        const final_products = prods.map((prod)=>{
+            let amountNew;
+            let prevAmount = (prod.amount*prod.orderItems.quantity)
+            let taxAmount
+            if(prod.type === 1){
+                taxAmount = 200
+                if(prod.amount <= 1000){
+                    taxAmount = taxAmount*prod.orderItems.quantity
+                    amountNew = prevAmount+taxAmount
+                }
+                if(1000<prod.amount <= 5000){
+                    taxAmount = (taxAmount + prod.amount*(12/100))*prod.orderItems.quantity
+                    amountNew = prevAmount + taxAmount;
+                }
+                if(prod.amount > 5000){
+                    taxAmount = (taxAmount + prod.amount*(18/100))*prod.orderItems.quantity
+                    amountNew = prevAmount + taxAmount
+                }
+            }
+            if(prod.type === 2){
+                taxAmount = 100;
+                if(prod.amount <= 1000){
+                    taxAmount = taxAmount*prod.orderItems.quantity
+                    amountNew = prevAmount + taxAmount
+                }
+                if(1000<prod.amount<=8000){
+                    taxAmount = (taxAmount + prod.amount*(10/100))*prod.orderItems.quantity
+                    amountNew = prevAmount + taxAmount;
+                }
+                if( prod.amount > 8000){
+                    taxAmount = (taxAmount + prod.amount*(15/100))*prod.orderItems.quantity
+                    amountNew = prevAmount + taxAmount;
+                }
+            }
+            prod.dataValues.totalFAmount = amountNew;
+            prod.dataValues.totalOAmount = prevAmount;
+            prod.dataValues.tax = taxAmount;
+            return prod;
+        })
+
+        return final_products;
+    })
+    .then((finalProd)=>{
+        let TotalFinalBillAmount = 0;
+        let TotalOriginalBillAmount = 0;
+        let TotalTaxAmount = 0;
+
+        finalProd.map(finalPro => {
+            TotalFinalBillAmount = TotalFinalBillAmount + finalPro.dataValues.totalFinalAmount
+        })
+        finalProd.map(finalPro => {
+            TotalOriginalBillAmount = TotalOriginalBillAmount + finalPro.dataValues.totalOrignalAmount
+        })
+        finalProd.map(finalPro => {
+            TotalTaxAmount = TotalTaxAmount + finalPro.dataValues.tax
+        })
+
+        const finalOrderData = {
+            totalFinalBillAmount : TotalFinalBillAmount,
+            totalTaxAmount : TotalOriginalBillAmount,
+            totalorignalBillAmount : TotalTaxAmount,
+            prodData : finalProd
+        }
+
+        return finalOrderData
+    })
+    .then(finalData => {
+        res.json(finalData)
     })
 }
-
 module.exports = {registerController, loginController , getUserCart, editCart, deleteProduct, createOrder, getOrder}
