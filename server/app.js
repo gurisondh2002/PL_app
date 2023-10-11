@@ -56,7 +56,7 @@ Order.belongsToMany(Prod_Services, {through : OrderItems})
         //     return user.createCart();
         // })
         .then(cart => {
-            app.listen(3000,()=>{
+            app.listen(3001,()=>{
                 console.log(`Server running on port ${port}`)
             });
         })
