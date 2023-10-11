@@ -57,7 +57,7 @@ function Registration() {
         e.preventDefault()
         const response = await sendRegistrationData(data)
         console.log(response)
-        if(response.message == "User Registered!"){
+        if(response.message == "User successfully Registered!"){
             router.push("/login")
         }
         else{
