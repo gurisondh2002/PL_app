@@ -16,18 +16,17 @@ function UserProfile() {
                 <div className={`${styles.textContent}`}>
                     <label>First Name:</label>
                     <br/>
-                    <input type="text" value="Gurjeet" />
+                    <input readOnly type="text" value="Gurjeet" />
                     <br/>
                     <label>Last Name:</label>
                     <br/>
-                    <input type="text" value="Kaur" />
+                    <input readOnly type="text" value="Kaur" />
                     <br/>
                     <label>Email:</label>
                     <br/>
-                    <input type="email" value="guri123@gmail.com" />
+                    <input readOnly type="email" value="guri123@gmail.com" />
                     <br/>
                     <br/>
-                    <button>Edit Profile</button>
                     <button>Logout</button>
                 </div>
             </div>
