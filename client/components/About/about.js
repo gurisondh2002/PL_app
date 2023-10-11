@@ -1,7 +1,17 @@
+'use client'
 import React from 'react'
 import styles from './about.module.css'
+// import { useNavigation } from 'next/navigation'
 
 function About() {
+
+  // const navigation = useNavigation()
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    redirect('/contact')
+  }
+
   return (
     <>
       <div className={`${styles.mainContainer}`}>
@@ -17,7 +27,7 @@ function About() {
               </div>
             </div>
             <div className={`${styles.aboutButton}`}>
-              <button >Get In Touch</button>
+              <button onClick={handleClick}>Get In Touch</button>
             </div>
           </div>
           <div className={`${styles.rightContainer}`} style={{ backgroundImage: `url('/assets/about.webp')` }}>

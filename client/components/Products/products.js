@@ -6,34 +6,21 @@ const Card = dynamic(
     {suspense:true}
 )
 
-function Products() {
-
-    const cardData = [
-        {
-            name:"Demo",
-            amount:500,
-            imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description: "This is a demo product",
-        },
-        {
-            name:"Demo",
-            amount:500,
-            imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description: "This is a demo product",
-        },
-        {
-            name:"Demo",
-            amount:500,
-            imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description: "This is a demo product",
-        },
-        {
-            name:"Demo",
-            amount:500,
-            imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description: "This is a demo product",
+async function getData() {
+        const res = await fetch('http://localhost:3001/productsServices/products', {cache:'no-cache'})
+    
+        if (!res.ok) {
+          throw new Error('Failed to fetch data')
         }
-    ]
+        const resNew = await res.json()
+        return resNew;
+      }
+
+async function Products() {
+
+    const cardData = await getData();
+
+    
     return (
         <>
         <br/>
@@ -52,7 +39,7 @@ function Products() {
                     {cardData.map((data, index) => (
                         <Card
                             key={index}
-                            imageUrl={data.imageURL}
+                            imageUrl={data.imageUrl}
                             heading={data.name}
                             content={data.description}
                             amount = {data.amount}

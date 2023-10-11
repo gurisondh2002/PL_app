@@ -2,37 +2,34 @@ import React from 'react'
 import styles from './prodsandsers.module.css'
 import dynamic from 'next/dynamic'
 const Card = dynamic(
-    ()=>import('@/components/Home/ProdsAndSers/Card/card'),
-    {suspense:true}
+    () => import('@/components/Home/ProdsAndSers/Card/card'),
+    { suspense: true }
 )
 
-function ProdsAndSers() {
-    const cardData = [
-        {
-            name:"Demo",
-            amount:500,
-            imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description: "This is a demo product This is a demo product This is a demo product This is a demo product",
-        },
-        {
-            name:"Demo",
-            amount:500,
-            imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description: "This is a demo product This is a demo product This is a demo product This is a demo product",
-        },
-        {
-            name:"Demo",
-            amount:500,
-            imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description: "This is a demo product This is a demo product This is a demo product This is a demo product",
-        },
-        {
-            name:"Demo",
-            amount:500,
-            imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description:"This is a demo product This is a demo product This is a demo product This is a demo product",
-        }
-    ]
+async function getData() {
+    const res = await fetch('http://localhost:3001/productsServices/products', {cache:'no-cache'})
+
+    if (!res.ok) {
+      throw new Error('Failed to fetch data')
+    }
+    const resNew = await res.json()
+    return resNew;
+  }
+  async function getDataSer() {
+    const res = await fetch('http://localhost:3001/productsServices/services', {cache:'no-cache'})
+
+    if (!res.ok) {
+      throw new Error('Failed to fetch data')
+    }
+    const resNew = await res.json()
+    return resNew;
+  }
+
+async function ProdsAndSers() { 
+
+     const cardData = await getData();
+
+     const cardDataSer = await getDataSer();
     return (
         <div className={`${styles.container}`}>
             <div className={`${styles.productsContainer}`}>
@@ -45,15 +42,17 @@ function ProdsAndSers() {
                     </div>
                 </div>
                 <div className={`${styles.flex}`}>
-                    {cardData.map((data, index)=>(
-                        <Card 
-                        key = {index}
-                        imageUrl = {data.imageURL}
-                        heading = {data.name}
-                        content = {data.description}
-                        amount = {data.amount}
-                        />
-                    ))}
+                    {cardData.map((data, index) => {
+                        return index < 4 ? (
+                            <Card
+                                key={index}
+                                imageUrl={data.imageUrl}
+                                heading={data.name}
+                                content={data.description}
+                                amount={data.amount}
+                            />
+                        ) : (<></>)
+                    })}
                 </div>
             </div>
 
@@ -67,15 +66,17 @@ function ProdsAndSers() {
                     </div>
                 </div>
                 <div className={`${styles.flex}`}>
-                    {cardData.map((data, index)=>(
-                        <Card 
-                        key = {index}
-                        imageUrl = {data.imageURL}
-                        heading = {data.name}
-                        content = {data.description}
-                        amount = {data.amount}
-                        />
-                    ))}
+                {cardDataSer.map((data, index) => {
+                        return index < 4 ? (
+                            <Card
+                                key={index}
+                                imageUrl={data.imageUrl}
+                                heading={data.name}
+                                content={data.description}
+                                amount={data.amount}
+                            />
+                        ) : (<></>)
+                    })}
                 </div>
             </div>
         </div>
