@@ -3,9 +3,53 @@ import styles from './card.module.css'
 import Image from 'next/image';
 import {PiPlusSquareLight} from 'react-icons/pi'
 import {PiMinusSquareLight} from 'react-icons/pi'
+import { useRouter } from 'next/navigation'
 import {RxCross1} from 'react-icons/rx'
 
+async function updateCart(method,prodId){
+    const res = await fetch('http://localhost:3001/user/cart/update', {
+        cache: 'no-cache',
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json', // Ensure that the content type is set to JSON
+            'email': localStorage.getItem('email')
+        },
+        body: JSON.stringify({method: method, pid:prodId})
+    })
+    const resRef = await res.json()
+    return resRef
+}
+async function deleteProductFromCart(prodId){
+    const res = await fetch('http://localhost:3001/user/cart/delete', {
+        cache: 'no-cache',
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json', // Ensure that the content type is set to JSON
+            'email': email
+        },
+        body: JSON.stringify({pid: prodId})
+    })
+    const resRef = await res.json()
+    return resRef
+}
+
 function Card(props) {
+    const router = useRouter();
+    const increaseQuantity = async()=>{
+        await updateCart("Increase",props.id).then(()=>{
+            window.location.reload(true);
+        })
+    }
+    const decreaseQuantity = async() => {
+        await updateCart("Decrease",props.id).then(()=>{
+            window.location.reload(true);
+        })
+    }
+    const deleteFromCart = async() => {
+        await deleteProductFromCart(props.id).then(()=>{
+            window.location.reload(true);
+        })
+    }
     return (
         <>
         <div className={`${styles.mainContainer}`}>
@@ -32,9 +76,9 @@ function Card(props) {
                 </div>
             </div>
             <div className={`${styles.cardIcons}`}>
-                <PiPlusSquareLight style={{height:"25px", width:"25px", margin:"10px"}}/>
-                <PiMinusSquareLight style={{height:"25px", width:"25px", margin:"10px"}}/>
-                <RxCross1 style={{height:"25px", width:"25px", margin:"10px"}}/>
+                <PiPlusSquareLight style={{height:"25px", width:"25px", margin:"10px"}} onClick={increaseQuantity}/>
+                <PiMinusSquareLight style={{height:"25px", width:"25px", margin:"10px"}} onClick={decreaseQuantity}/>
+                <RxCross1 style={{height:"25px", width:"25px", margin:"10px"}} onClick={deleteFromCart}/>
             </div>
         </div>
     </>
