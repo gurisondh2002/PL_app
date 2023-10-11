@@ -20,10 +20,11 @@ function Card(props) {
                 <div className={`${styles.cardContent}`}>
                     {props.content}
                 </div>
+                <div className={`${styles.cardAmount}`}>
+                    <p>Price : $ {props.amount}</p>
+                </div>
             </div>
-            <div className={`${styles.cardButton}`}>
                 <button>Add To Cart</button>
-            </div>
         </div>
     )
 }

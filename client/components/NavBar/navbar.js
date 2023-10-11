@@ -30,14 +30,14 @@ function Navigationbar() {
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/reviews">Reviews</Nav.Link>
-            <Nav.Link href="/book">Book Online</Nav.Link>
+            <Nav.Link href="/order">Orders</Nav.Link>
             <Nav.Link href="/contact">Contact Us</Nav.Link>
           </Nav>
           <Nav>
           <Nav.Link href="/cart">
             <FaShoppingCart  style={{height:"25px", width:"25px"}}/>
           </Nav.Link>
-          <Nav.Link href="/registration">
+          <Nav.Link href="/user">
             <BiSolidUser style={{height:"25px", width:"25px"}}/>
           </Nav.Link>
           </Nav>

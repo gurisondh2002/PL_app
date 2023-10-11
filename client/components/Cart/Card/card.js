@@ -7,6 +7,7 @@ import {RxCross1} from 'react-icons/rx'
 
 function Card(props) {
     return (
+        <>
         <div className={`${styles.mainContainer}`}>
             <div className={`${styles.cardImage}`}>
                 <Image  
@@ -36,6 +37,7 @@ function Card(props) {
                 <RxCross1 style={{height:"25px", width:"25px", margin:"10px"}}/>
             </div>
         </div>
+    </>
     )
 }
 

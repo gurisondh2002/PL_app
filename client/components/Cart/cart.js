@@ -47,7 +47,7 @@ function Cart() {
             <div className={`${styles.cartContainer}`}>
                 <div className={`${styles.text}`}>
                     <div className={`${styles.textHeading}`}>
-                        <h1>Products and services are:</h1>
+                        <h1>Your Cart:</h1>
                     </div>
                 </div>
                 <div className={`${styles.flex}`}>
@@ -62,8 +62,8 @@ function Cart() {
                         />
                     ))}
                 </div>
-                <div className={`${styles.orderButton}`}>
-
+                <div className={`${styles.orderNow}`}>
+                    <button>Order Now</button>
                 </div>
             </div>
             </div>

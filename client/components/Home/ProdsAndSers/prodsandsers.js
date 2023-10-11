@@ -12,25 +12,25 @@ function ProdsAndSers() {
             name:"Demo",
             amount:500,
             imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description: "This is a demo product",
+            description: "This is a demo product This is a demo product This is a demo product This is a demo product",
         },
         {
             name:"Demo",
             amount:500,
             imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description: "This is a demo product",
+            description: "This is a demo product This is a demo product This is a demo product This is a demo product",
         },
         {
             name:"Demo",
             amount:500,
             imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description: "This is a demo product",
+            description: "This is a demo product This is a demo product This is a demo product This is a demo product",
         },
         {
             name:"Demo",
             amount:500,
             imageURL: "https://images.pexels.com/photos/669580/pexels-photo-669580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            description: "This is a demo product",
+            description:"This is a demo product This is a demo product This is a demo product This is a demo product",
         }
     ]
     return (
@@ -51,6 +51,7 @@ function ProdsAndSers() {
                         imageUrl = {data.imageURL}
                         heading = {data.name}
                         content = {data.description}
+                        amount = {data.amount}
                         />
                     ))}
                 </div>
@@ -72,6 +73,7 @@ function ProdsAndSers() {
                         imageUrl = {data.imageURL}
                         heading = {data.name}
                         content = {data.description}
+                        amount = {data.amount}
                         />
                     ))}
                 </div>

@@ -28,6 +28,7 @@ function UserProfile() {
                     <br/>
                     <br/>
                     <button>Edit Profile</button>
+                    <button>Logout</button>
                 </div>
             </div>
         </div>

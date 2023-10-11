@@ -55,6 +55,7 @@ function Products() {
                             imageUrl={data.imageURL}
                             heading={data.name}
                             content={data.description}
+                            amount = {data.amount}
                         />
                     ))}
                 </div>
