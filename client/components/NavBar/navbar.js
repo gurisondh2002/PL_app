@@ -6,12 +6,18 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaShoppingCart } from 'react-icons/fa';
 import { BiSolidUser } from 'react-icons/bi';
 import styles from './navbar.module.css'
+import Image from 'next/image';
 
 function Navigationbar() {
   return (
-    <Navbar collapseOnSelect expand="lg" style={{backgroundImage : `url('/assets/logo.png')` }}>
+    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/" className={`${styles.logo} `}>Style My Home</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <Image src={"/assets/logo.png"}
+          width={140}
+          height={50}
+          alt="Logo Image"/>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -31,7 +37,7 @@ function Navigationbar() {
           <Nav.Link href="/cart">
             <FaShoppingCart  style={{height:"25px", width:"25px"}}/>
           </Nav.Link>
-          <Nav.Link href="/user">
+          <Nav.Link href="/registration">
             <BiSolidUser style={{height:"25px", width:"25px"}}/>
           </Nav.Link>
           </Nav>
