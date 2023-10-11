@@ -14,10 +14,6 @@ const ProdsAndSers = dynamic(
   ()=>import('@/components/Home/ProdsAndSers/prodsandsers'),
   {suspense:true}
 )
-const Trending = dynamic(
-  ()=>import('@/components/Home/Trending/trending'),
-  {suspense:true}
-)
 
 export default function Home() {
   return (
@@ -25,7 +21,6 @@ export default function Home() {
       <PageBanner />
       <Services />
       <ProdsAndSers/>
-      <Trending/>
     </div>
   )
 }
