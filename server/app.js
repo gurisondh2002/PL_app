@@ -4,21 +4,33 @@ const port = 3000
 const sequelize = require('./utils/db')
 const cors = require('cors')
 
-app.use(express.json());
-app.use(cors());
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+
 
 const Prod_Services = require('./models/prod_service')
 const Users = require('./models/user')
 const Cart = require('./models/cart')
 const CartItems = require('./models/cartItems')
 
-app.use((req, res, next) => {
-    Users.findByPk(1)
-        .then(user => {
-            req.user = user;
-            next();
+app.use(async(req, res, next) => {
+    if (req.headers['email']) {
+        const uEmail = req.headers['email']
+        console.log(uEmail)
+        await Users.findOne({
+            where: {
+                email: uEmail
+            }
+        }).then(user => {
+            if (!user) {
+                req.user = ""
+            } else {
+                req.user = user
+            }
         })
-        .catch(err => console.log(err));
+    }
+    next()
 });
 
 const ProdServiceRouter = require('./routes/prod_services');
@@ -42,20 +54,7 @@ Order.belongsToMany(Prod_Services, {through : OrderItems})
     
     sequelize
         .sync()
-        .then(result => {
-            return Users.findByPk(1);
-            // console.log(result);
-        })
-        .then(user => {
-            if (!user) {
-                return Users.create({ first_name: 'test', last_name:"user", email: 'test@test.com', password:"testpass", role: 2, is_active:1 });
-            }
-            return user;
-        })
-        // .then(user => {
-        //     return user.createCart();
-        // })
-        .then(cart => {
+        .then(res =>{
             app.listen(3001,()=>{
                 console.log(`Server running on port ${port}`)
             });

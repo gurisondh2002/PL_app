@@ -37,8 +37,8 @@ const registerController = async(req,res) =>{
 
 const loginController = async(req,res)=>{
     const {email, password} = req.body;
-    let user;
-    return user = await Users.findOne({
+    let fetchedUser;
+    await Users.findOne({
         where :{
             email : email
         }
@@ -47,12 +47,20 @@ const loginController = async(req,res)=>{
             res.json({"message":"User not registered"});
         }
         else{
-            bcrypt.compare(password, user.password).then((match)=>{
+            fetchedUser = user;
+            bcrypt.compare(password, user.password).then(async(match)=>{
                 if(!match){
+                    console.log(match)
                     res.json({"message":"Wrong credentials"});
                 }
                 else{
-                    res.json("Logged in successfully");
+                    const userEmail = fetchedUser.email;
+                    const admin = await isAdmin(fetchedUser)
+                    res.json({
+                        message:"Logged In Successfully",
+                        email: userEmail,
+                        isAdmin: admin
+                    });
                 }
             })
         }
@@ -61,15 +69,19 @@ const loginController = async(req,res)=>{
 
 const getUserCart = async(req, res, next) => {
     req.user.getCart().then((cart) => {
-        return cart.getProducts_services()
-    })
-        .then(products => {
-            if (products.length > 0) {
-                res.json(products)
-            }
-            else {
-                res.json("Cart is empty!!")
-            }
+        if(!cart){
+            res.json("Cart is Empty")
+        }else{
+            return cart.getProducts_services()
+        }
+    }).then((products) => {
+        console.log(products)
+            // if (products.length > 0) {
+            //     res.json(products)
+            // }
+            // else {
+            //     res.json("Cart is empty!!")
+            // }
         })
 }
 const editCart = async (req, res, next) => {
